@@ -1,0 +1,14 @@
+investment_program/
+│
+├── main.py                # The main program file to execute everything.
+├── technical_indicators/   # Folder for technical indicator modules
+│   ├── moving_average.py
+│   ├── rsi.py
+│   └── macd.py
+├── fundamental_signals/    # Folder for fundamental signal modules
+│   ├── insider_trading.py
+│   ├── earnings.py
+│   └── mergers_acquisitions.py
+├── aggregator.py           # Aggregates data from the various modules.
+├── alert_system.py         # Defines alerts based on certain thresholds.
+└── scheduler.py            # Scheduler for running the program daily.
