@@ -1,14 +1,26 @@
-investment_program/
+investment_program_js/
 │
-├── main.py                # The main program file to execute everything.
-├── technical_indicators/   # Folder for technical indicator modules
-│   ├── moving_average.py
-│   ├── rsi.py
-│   └── macd.py
-├── fundamental_signals/    # Folder for fundamental signal modules
-│   ├── insider_trading.py
-│   ├── earnings.py
-│   └── mergers_acquisitions.py
-├── aggregator.py           # Aggregates data from the various modules.
-├── alert_system.py         # Defines alerts based on certain thresholds.
-└── scheduler.py            # Scheduler for running the program daily.
+├── index.js                      # Main entry point, initiates the program
+├── config/                       # Config folder for API keys, environment variables
+│   └── config.js                 # Stores API keys and config settings
+├── data/                         # Stores fetched and processed data
+│   └── companies.json            # List of companies to analyze
+├── modules/                      # Main folder for all functional modules
+│   ├── technical_indicators/      # Technical analysis folder
+│   │   ├── movingAverage.js       # Moving Average indicator
+│   │   ├── rsi.js                # RSI indicator
+│   │   └── macd.js               # MACD indicator (add more indicators as needed)
+│   ├── fundamental_signals/       # Fundamental analysis folder
+│   │   ├── insiderTrading.js      # Insider Trading signal
+│   │   ├── earnings.js           # Earnings signal
+│   │   └── newsSentiment.js      # News and social sentiment analysis
+│   └── aggregator.js             # Aggregates data from different modules
+├── services/                     # External services like APIs and alert system
+│   ├── stockAPI.js               # Fetches stock market data
+│   ├── newsAPI.js                # Fetches financial news
+│   ├── sentimentAnalysis.js      # Analyzes social media and news sentiment
+│   └── alertSystem.js            # Sends alerts (e.g., email, SMS)
+├── utils/                        # Utility functions (helper code)
+│   └── logger.js                 # Logs results and errors for easier debugging
+└── scheduler/                    # Scheduler to automate program execution
+    └── cronJob.js                # Schedules daily execution of the program
