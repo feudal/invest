@@ -1,8 +1,9 @@
 import axios from "axios";
 import dotenv from "dotenv";
-import fs from "fs";
-import path from "path";
-import { fileURLToPath } from "url";
+import fs from "node:fs";
+import path from "node:path";
+import process from "node:process";
+import { fileURLToPath } from "node:url";
 
 dotenv.config();
 
@@ -21,7 +22,7 @@ export async function fetchCompanies() {
       console.log(`Successfully fetched ${response.data.length} companies.`);
       console.log(`Data stored in ${targetPath}`);
     }
-  } catch (error) {
-    console.error("Error fetching companies:", error.message);
+  } catch (error: any) {
+    console.error("Error fetching companies:", error?.message);
   }
 }

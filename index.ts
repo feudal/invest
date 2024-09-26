@@ -17,8 +17,7 @@
 
 // getMACDData("AAPL");
 
-// const { fetchCompanies } = require("./services/stockAPI");
-import { fetchCompanies } from "./services/stockAPI.mjs";
+import { fetchCompanies } from "./services/stockAPI.ts";
 
 async function init() {
   console.log("Fetching list of companies...");
