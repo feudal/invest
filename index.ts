@@ -1,3 +1,4 @@
-import { fetchNews } from "./services/newsAPI.ts";
+// import { sendSMS } from "./services/alertSystem.ts";
 
-await fetchNews();
+// await fetchNews();
+// await sendSMS("Si faci Dimon?");

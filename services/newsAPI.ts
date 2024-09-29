@@ -9,7 +9,7 @@ export const fetchNews = async () => {
 
   try {
     const response = await axios.get(
-      `https://www.alphavantage.co/query?function=NEWS_SENTIMENT&time_from=${lastHour}&apikey=${process.env.NEWS_API}`
+      `https://www.alphavantage.co/query?function=NEWS_SENTIMENT&time_from=${lastHour}&apikey=${process.env.NEWS_API}`,
     );
 
     console.log({
