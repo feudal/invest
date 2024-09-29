@@ -1,26 +1,26 @@
-investment_program_js/
+invest/
 │
-├── index.js                      # Main entry point, initiates the program
+├── index.ts                      # Main entry point, initiates the program
 ├── config/                       # Config folder for API keys, environment variables
-│   └── config.js                 # Stores API keys and config settings
+│   └── config.ts                 # Stores API keys and config settings
 ├── data/                         # Stores fetched and processed data
 │   └── companies.json            # List of companies to analyze
 ├── modules/                      # Main folder for all functional modules
 │   ├── technical_indicators/      # Technical analysis folder
-│   │   ├── movingAverage.js       # Moving Average indicator
-│   │   ├── rsi.js                # RSI indicator
-│   │   └── macd.js               # MACD indicator (add more indicators as needed)
+│   │   ├── movingAverage.ts       # Moving Average indicator
+│   │   ├── rsi.ts                # RSI indicator
+│   │   └── macd.ts               # MACD indicator (add more indicators as needed)
 │   ├── fundamental_signals/       # Fundamental analysis folder
-│   │   ├── insiderTrading.js      # Insider Trading signal
-│   │   ├── earnings.js           # Earnings signal
-│   │   └── newsSentiment.js      # News and social sentiment analysis
-│   └── aggregator.js             # Aggregates data from different modules
+│   │   ├── insiderTrading.ts      # Insider Trading signal
+│   │   ├── earnings.ts           # Earnings signal
+│   │   └── newsSentiment.ts      # News and social sentiment analysis
+│   └── aggregator.ts             # Aggregates data from different modules
 ├── services/                     # External services like APIs and alert system
-│   ├── stockAPI.js               # Fetches stock market data
-│   ├── newsAPI.js                # Fetches financial news
-│   ├── sentimentAnalysis.js      # Analyzes social media and news sentiment
-│   └── alertSystem.js            # Sends alerts (e.g., email, SMS)
+│   ├── stockAPI.ts               # Fetches stock market data
+│   ├── newsAPI.ts                # Fetches financial news
+│   ├── sentimentAnalysis.ts      # Analyzes social media and news sentiment
+│   └── alertSystem.ts            # Sends alerts (e.g., email, SMS)
 ├── utils/                        # Utility functions (helper code)
-│   └── logger.js                 # Logs results and errors for easier debugging
+│   └── logger.ts                 # Logs results and errors for easier debugging
 └── scheduler/                    # Scheduler to automate program execution
-    └── cronJob.js                # Schedules daily execution of the program
+    └── cronJob.ts                # Schedules daily execution of the program
