@@ -1,8 +1,3 @@
-// import { fetchCompanies } from "./services/stockAPI.ts";
+import { fetchNews } from "./services/newsAPI.ts";
 
-// async function init() {
-//   console.log("Fetching list of companies...");
-//   await fetchCompanies();
-// }
-
-// init();
+await fetchNews();
