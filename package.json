@@ -1,5 +1,8 @@
 {
   "type": "module",
+  "scripts": {
+    "start": "pm2 start index.ts --interpreter='deno' --interpreter-args='run --allow-net --allow-read --allow-write --allow-env'"
+  },
   "include": [
     "src/**/*.ts"
   ],
@@ -14,6 +17,7 @@
     "axios": "^1.7.7",
     "dotenv": "^16.4.5",
     "node-cron": "^3.0.3",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "pm2": "^5.4.2"
   }
 }

@@ -12,7 +12,8 @@ const intervals = [
 
 // Funcție pentru a programa cron jobs pe baza intervalelor
 function scheduleJobs() {
-  sendSMS("Begin jobs");
+  let firstTime = true;
+
   intervals.forEach((interval) => {
     let { hour, minute } = interval.start;
     let currentMinute = minute;
@@ -26,6 +27,11 @@ function scheduleJobs() {
       cron.schedule(cronExpression, () => {
         console.log(`Rulează la ${hour}:${currentMinute}`);
 
+        if (firstTime) {
+          sendSMS("begin jobs");
+          firstTime = false;
+        }
+
         fetchNews(interval.step);
       });
 
@@ -37,8 +43,6 @@ function scheduleJobs() {
       }
     }
   });
-
-  sendSMS("Finish jobs");
 }
 
 scheduleJobs();
