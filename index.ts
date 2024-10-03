@@ -1,6 +1,7 @@
 import cron from "node-cron";
 
 import { fetchNews } from "./services/newsAPI.ts";
+import { sendSMS } from "./services/smsSending.ts";
 
 // Array de intervale de timp
 const intervals = [
@@ -11,6 +12,7 @@ const intervals = [
 
 // Funcție pentru a programa cron jobs pe baza intervalelor
 function scheduleJobs() {
+  sendSMS("Begin jobs");
   intervals.forEach((interval) => {
     let { hour, minute } = interval.start;
     let currentMinute = minute;
@@ -35,6 +37,8 @@ function scheduleJobs() {
       }
     }
   });
+
+  sendSMS("Finish jobs");
 }
 
 scheduleJobs();
