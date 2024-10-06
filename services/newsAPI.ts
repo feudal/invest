@@ -19,10 +19,6 @@ export const fetchNews = async (lastMinutes?: number) => {
     timeQuery = `&time_from=${encodeURIComponent(formattedTime)}`;
   }
 
-  console.log({
-    url: `https://www.alphavantage.co/query?function=NEWS_SENTIMENT${timeQuery}&limit=1000&apikey=${process.env.NEWS_API}`,
-  });
-
   try {
     const response = await axios.get(
       `https://www.alphavantage.co/query?function=NEWS_SENTIMENT${timeQuery}&limit=1000&apikey=${process.env.NEWS_API}`
