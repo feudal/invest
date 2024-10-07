@@ -27,8 +27,6 @@ function scheduleJobs() {
       const cronExpression = `${currentMinute} ${hour} * * 1-5`; // Luni-Vineri (1-5)
 
       cron.schedule(cronExpression, async () => {
-        logToFile(`Rulează la ${hour}:${currentMinute}`);
-
         if (firstTime) {
           sendSMS("begin jobs");
           logToFile(
