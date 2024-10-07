@@ -49,8 +49,7 @@ export const analysisNews = async (news?: string) => {
 
     const response = completion.choices[0].message.content;
 
-    // Log the response from OpenAI
-    logToFile(`Response generated.`);
+    logToFile(response ? "Response generated." : "No response generated.");
 
     return response;
   } catch (error) {

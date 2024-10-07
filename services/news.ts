@@ -28,6 +28,8 @@ export const fetchNews = async (lastMinutes?: number) => {
         .join("\n\n");
       const newsData = JSON.stringify(response.data, null, 2); // Stringify the news data
       return { newsData, summaries }; // Return both the news data and summaries
+    } else {
+      logToFile("No news data received");
     }
   } catch (error) {
     logToFile(`Error fetching news: ${error.message}`);
