@@ -17,9 +17,6 @@ const intervals = [
 ];
 
 function scheduleJobs() {
-  logToFile(
-    `[${new Date().toISOString()}] program started, scheduling jobs...`
-  );
   let firstTime = true;
 
   intervals.forEach((interval) => {
@@ -34,6 +31,9 @@ function scheduleJobs() {
 
         if (firstTime) {
           sendSMS("begin jobs");
+          logToFile(
+            `[${new Date().toISOString()}] program started, scheduling jobs...`
+          );
           firstTime = false;
         }
 
