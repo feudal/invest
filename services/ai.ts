@@ -1,7 +1,7 @@
 import dotenv from "dotenv";
 import process from "node:process";
 import OpenAI from "openai";
-import { logToFile } from "./logs";
+import { logToFile } from "./logs.ts";
 
 dotenv.config();
 

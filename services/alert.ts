@@ -1,7 +1,7 @@
 import axios from "axios";
 import dotenv from "dotenv";
 import process from "node:process";
-import { logToFile } from "./logs";
+import { logToFile } from "./logs.ts";
 
 dotenv.config();
 
