@@ -29,9 +29,7 @@ function scheduleJobs() {
       cron.schedule(cronExpression, async () => {
         if (firstTime) {
           sendSMS("begin jobs");
-          logToFile(
-            `[${new Date().toISOString()}] program started, scheduling jobs...`
-          );
+          logToFile(`Program started, scheduling jobs...`);
           firstTime = false;
         }
 
