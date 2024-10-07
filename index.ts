@@ -1,12 +1,12 @@
 import cron from "node-cron";
 
 import {
-  sendSMS,
-  fetchNews,
-  saveFiles,
   analysisNews,
-  logToFile,
+  fetchNews,
   getTechnicalIndicators,
+  logToFile,
+  saveFiles,
+  sendSMS,
 } from "./services/index.ts";
 import { TradingOpportunity } from "./types.ts";
 
@@ -17,6 +17,9 @@ const intervals = [
 ];
 
 function scheduleJobs() {
+  logToFile(
+    `[${new Date().toISOString()}] program started, scheduling jobs...`
+  );
   let firstTime = true;
 
   intervals.forEach((interval) => {
