@@ -26,7 +26,7 @@ interface FeedItem {
   ticker_sentiment: TickerSentiment[];
 }
 
-interface News {
+export interface News {
   items: string;
   sentiment_score_definition: string;
   relevance_score_definition: string;
