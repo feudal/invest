@@ -6,8 +6,8 @@ import {
   analysisNews,
   logToFile,
   getTechnicalIndicators,
-} from "./services";
-import { TradingOpportunity } from "./types";
+} from "./services/index.ts";
+import { TradingOpportunity } from "./types.ts";
 
 // Array de intervale de timp
 const intervals = [
