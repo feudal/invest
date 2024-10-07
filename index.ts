@@ -80,6 +80,8 @@ function scheduleJobs() {
             };
           }
         });
+
+        saveFiles(JSON.stringify(tradingOpportunities), "opportunities");
       });
 
       // Avansarea minutei curente
