@@ -1,9 +1,13 @@
 import cron from "node-cron";
-
-import { fetchNews } from "./services/news.ts";
-import { sendSMS } from "./services/alert.ts";
-import { saveFiles } from "./services/files.ts";
-import { analysisNews } from "./services/ai.ts";
+import {
+  sendSMS,
+  fetchNews,
+  saveFiles,
+  analysisNews,
+  logToFile,
+  getTechnicalIndicators,
+} from "./services";
+import { TradingOpportunity } from "./types";
 
 // Array de intervale de timp
 const intervals = [
@@ -40,11 +44,42 @@ function scheduleJobs() {
         const analysis = await analysisNews(data?.summaries);
         saveFiles(analysis || undefined, "analysis");
 
-        const tradingOpportunities = JSON.parse(analysis || "");
+        const tradingOpportunities: TradingOpportunity[] = JSON.parse(
+          analysis || ""
+        );
 
         const stocks = tradingOpportunities.map((s) => s.shortName);
 
-        // get info about each stock
+        if (stocks.length === 0) {
+          logToFile("No stocks found.");
+          return;
+        }
+
+        stocks.forEach(async (stock) => {
+          // technical indicators
+          const {
+            shortMovingAverage,
+            mediumMovingAverage,
+            longMovingAverage,
+            macd,
+            rsi,
+          } = await getTechnicalIndicators(stock);
+
+          // Find the corresponding trading opportunity and add the indicators
+          const opportunity = tradingOpportunities.find(
+            (opportunity) => opportunity.shortName === stock
+          );
+
+          if (opportunity) {
+            opportunity.technicalIndicators = {
+              shortMovingAverage,
+              mediumMovingAverage,
+              longMovingAverage,
+              macd,
+              rsi,
+            };
+          }
+        });
       });
 
       // Avansarea minutei curente

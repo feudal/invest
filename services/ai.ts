@@ -21,7 +21,7 @@ Example of the desired structure:
   ]
   IN RESPONSE PUT ONLY THE OBJECT!
   PLEASE PROVIDE THE RESPONSE WITHOUT USING ANY CODE FORMATTING!
-  THE NEWS MUST AFECT ONLY STOCKS
+  THE NEWS MUST AFECT ONLY USA STOCKS
   `;
 
 export const analysisNews = async (news?: string) => {

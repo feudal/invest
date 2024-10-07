@@ -1,4 +1,5 @@
 import yahooFinance from "yahoo-finance2";
+
 import { Quote } from "../types.ts";
 import { logToFile } from "./logs.ts";
 

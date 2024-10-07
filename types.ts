@@ -42,3 +42,19 @@ export interface Quote {
   close: number | null;
   volume: number | null;
 }
+
+export interface TradingOpportunity {
+  stock: string;
+  shortName: string;
+  founded: string;
+  sector: string;
+  summary: string;
+  recommendationBasedOnNews: string;
+  technicalIndicators?: {
+    shortMovingAverage: number;
+    mediumMovingAverage: number;
+    longMovingAverage: number;
+    macd?: number;
+    rsi?: number;
+  };
+}
