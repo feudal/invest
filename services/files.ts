@@ -2,6 +2,7 @@ import dotenv from "dotenv";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { logToFile } from "./logs";
 
 dotenv.config();
 
@@ -14,7 +15,10 @@ export const saveFiles = (
   extension = "txt",
   fileName = new Date().toISOString()
 ) => {
-  if (!text) return;
+  if (!text) {
+    logToFile("function saveFiles don't receive any string");
+    return;
+  }
 
   const fullPath = path.join(
     __dirname,
@@ -25,9 +29,9 @@ export const saveFiles = (
   const dirPath = path.dirname(fullPath);
   if (!fs.existsSync(dirPath)) {
     fs.mkdirSync(dirPath, { recursive: true }); // Create the directory if it doesn't exist
-    console.log(`Directory created: ${dirPath}`);
+    logToFile(`Directory created: ${dirPath}`);
   }
 
   fs.writeFileSync(fullPath, text);
-  console.log(`File saved: ${fullPath}`);
+  logToFile(`File saved: ${fullPath}`);
 };

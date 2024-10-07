@@ -2,6 +2,7 @@ import axios from "axios";
 import dotenv from "dotenv";
 import process from "node:process";
 import { formatDate } from "../utils/time.ts";
+import { logToFile } from "./logs.ts";
 
 dotenv.config();
 
@@ -14,6 +15,7 @@ export const fetchNews = async (lastMinutes?: number) => {
   }
 
   try {
+    logToFile("Receiving news");
     const response = await axios.get(
       `https://www.alphavantage.co/query?function=NEWS_SENTIMENT${timeQuery}&limit=1000&apikey=${process.env.NEWS_API}`
     );
@@ -27,6 +29,6 @@ export const fetchNews = async (lastMinutes?: number) => {
       return { newsData, summaries }; // Return both the news data and summaries
     }
   } catch (error) {
-    console.error("Error fetching news:", error.message);
+    logToFile(`Error fetching news: ${error.message}`);
   }
 };

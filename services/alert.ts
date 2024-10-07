@@ -1,6 +1,7 @@
 import axios from "axios";
 import dotenv from "dotenv";
 import process from "node:process";
+import { logToFile } from "./logs";
 
 dotenv.config();
 
@@ -17,11 +18,11 @@ export const sendSMS = async (msg: string) => {
         headers: {
           Authorization: `Bearer ${process.env.SMS_API}`,
         },
-      },
+      }
     );
 
-    console.log(response.data);
+    logToFile(response.data);
   } catch (error) {
-    console.error(error);
+    logToFile(error);
   }
 };
