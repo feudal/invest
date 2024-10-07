@@ -11,9 +11,9 @@ import {
 import { TradingOpportunity } from "./types.ts";
 
 const intervals = [
-  { start: { hour: 14, minute: 30 }, step: 6, count: 10 },
-  { start: { hour: 15, minute: 30 }, step: 15, count: 10 },
-  { start: { hour: 18, minute: 0 }, step: 36, count: 5 },
+  { start: { hour: 13, minute: 30 }, step: 6, count: 10 },
+  { start: { hour: 14, minute: 30 }, step: 15, count: 10 },
+  { start: { hour: 17, minute: 0 }, step: 36, count: 5 },
 ];
 
 function scheduleJobs() {
