@@ -4,6 +4,7 @@
   "scripts": {
     "111": "deno run --allow-all 111.ts",
     "start": "pm2 start index.ts --interpreter='deno' --interpreter-args='run --allow-net --allow-read --allow-write --allow-env' --restart-delay=1000 --autorestart",
+    "restart": "git pull && pm2 restart index.ts",
     "enter": "ssh root@188.245.173.126",
     "copy": " scp -r root@188.245.173.126:/root/invest/data /Users/dimon/Documents/WINDOWS/projects/invest/server-data"
   },
