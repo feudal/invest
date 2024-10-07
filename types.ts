@@ -32,3 +32,13 @@ interface News {
   relevance_score_definition: string;
   feed: FeedItem[];
 }
+
+export interface Quote {
+  adjclose?: number | null;
+  date: Date;
+  high: number | null;
+  low: number | null;
+  open: number | null;
+  close: number | null;
+  volume: number | null;
+}

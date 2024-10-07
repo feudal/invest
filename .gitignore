@@ -3,3 +3,4 @@ data
 .env
 111.ts
 server-data
+.DS_Store

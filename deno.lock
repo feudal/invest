@@ -8,7 +8,8 @@
       "npm:node-cron@^3.0.3": "npm:node-cron@3.0.3",
       "npm:openai@^4.67.1": "npm:openai@4.67.1",
       "npm:path@^0.12.7": "npm:path@0.12.7",
-      "npm:pm2@^5.4.2": "npm:pm2@5.4.2"
+      "npm:pm2@^5.4.2": "npm:pm2@5.4.2",
+      "npm:yahoo-finance2@^2.13.2": "npm:yahoo-finance2@2.13.2"
     },
     "npm": {
       "@pm2/agent@2.0.4": {
@@ -58,6 +59,10 @@
           "debug": "debug@4.3.7"
         }
       },
+      "@sinclair/typebox@0.32.35": {
+        "integrity": "sha512-Ul3YyOTU++to8cgNkttakC0dWvpERr6RYoHO2W47DLbFvrwBDJUY31B1sImH6JZSYc4Kt4PyHtoPNu+vL2r2dA==",
+        "dependencies": {}
+      },
       "@tootallnate/quickjs-emscripten@0.23.0": {
         "integrity": "sha512-C5Mc6rdnsaJDjO3UpGW/CQTHtCKaYlScZTly4JIu97Jxo/odCiH0ITnDXSJPTOrEKk/ycSZ0AOgTmkDtkOsvIA==",
         "dependencies": {}
@@ -84,6 +89,10 @@
         "dependencies": {
           "undici-types": "undici-types@6.19.8"
         }
+      },
+      "@types/tough-cookie@4.0.5": {
+        "integrity": "sha512-/Ad8+nIOV7Rl++6f1BdKxFSMgmoqEoYbHRpPcx3JEfv8VRsQe9Z4mCXeJBzxs7mbHY/XOZZuXlRNfhpVPbs6ZA==",
+        "dependencies": {}
       },
       "abort-controller@3.0.0": {
         "integrity": "sha512-h8lQ8tacZYnR3vNQTgibj+tODHI5/+l06Au2Pcriv/Gmet0eaj4TwWH41sO9wnHDiQsEj19q0drzdWdeAHtweg==",
@@ -772,6 +781,18 @@
         "integrity": "sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==",
         "dependencies": {}
       },
+      "psl@1.9.0": {
+        "integrity": "sha512-E/ZsdU4HLs/68gYzgGTkMicWTLPdAftJLfJFlLUAAKZGkStNU72sZjT66SnMDVOfOWY/YAoiD7Jxa9iHvngcag==",
+        "dependencies": {}
+      },
+      "punycode@2.3.1": {
+        "integrity": "sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg==",
+        "dependencies": {}
+      },
+      "querystringify@2.2.0": {
+        "integrity": "sha512-FIqgj2EUvTa7R50u0rGsyTftzjYmv/a3hO345bZNrqabNqjtgiDMgmo4mkUjd+nzU5oF3dClKqFIPUKybUyqoQ==",
+        "dependencies": {}
+      },
       "read@1.0.7": {
         "integrity": "sha512-rSOKNYUmaxy0om1BNjMN4ezNT6VKK+2xF4GBhc81mkH7L60i6dp8qPYrkndNLT3QPphoII3maL9PVC9XmhHwVQ==",
         "dependencies": {
@@ -791,6 +812,10 @@
           "module-details-from-path": "module-details-from-path@1.0.3",
           "resolve": "resolve@1.22.8"
         }
+      },
+      "requires-port@1.0.0": {
+        "integrity": "sha512-KigOCHcocU3XODJxsu8i/j8T9tzT4adHiecwORRQ0ZZFcp7ahwXuRU1m+yuO90C5ZUyGeGfocHDI14M3L3yDAQ==",
+        "dependencies": {}
       },
       "resolve@1.22.8": {
         "integrity": "sha512-oKWePCxqpd6FlLvGV1VU0x7bkPmmCNolxzjMf4NczoDnQcIWrAF+cPtZn5i6n+RfD2d9i0tzpKnG6Yk168yIyw==",
@@ -892,6 +917,21 @@
           "is-number": "is-number@7.0.0"
         }
       },
+      "tough-cookie-file-store@2.0.3": {
+        "integrity": "sha512-sMpZVcmFf6EYFHFFl+SYH4W1/OnXBYMGDsv2IlbQ2caHyFElW/UR/gpj/KYU1JwmP4dE9xqwv2+vWcmlXHojSw==",
+        "dependencies": {
+          "tough-cookie": "tough-cookie@4.1.4"
+        }
+      },
+      "tough-cookie@4.1.4": {
+        "integrity": "sha512-Loo5UUvLD9ScZ6jh8beX1T6sO1w2/MpCRpEP7V280GKMVUQ0Jzar2U3UJPsrdbziLEMMhu3Ujnq//rhiFuIeag==",
+        "dependencies": {
+          "psl": "psl@1.9.0",
+          "punycode": "punycode@2.3.1",
+          "universalify": "universalify@0.2.0",
+          "url-parse": "url-parse@1.5.10"
+        }
+      },
       "tr46@0.0.3": {
         "integrity": "sha512-N3WMsuqV66lT30CrXNbEjx4GEwlow3v6rr4mCcv6prnfwhS01rkgyFdjPNBYd9br7LpXV1+Emh01fHnq2Gdgrw==",
         "dependencies": {}
@@ -922,9 +962,20 @@
         "integrity": "sha512-ve2KP6f/JnbPBFyobGHuerC9g1FYGn/F8n1LWTwNxCEzd6IfqTwUQcNXgEtmmQ6DlRrC1hrSrBnCZPokRrDHjw==",
         "dependencies": {}
       },
+      "universalify@0.2.0": {
+        "integrity": "sha512-CJ1QgKmNg3CwvAv/kOFmtnEN05f0D/cn9QntgNOQlQF9dgvVTHj3t+8JPdjqawCHk7V/KA+fbUqzZ9XWhcqPUg==",
+        "dependencies": {}
+      },
       "universalify@2.0.1": {
         "integrity": "sha512-gptHNQghINnc/vTGIk0SOFGFNXw7JVrlRUtConJRlvaw6DuX0wO5Jeko9sWrMBhh+PsYAZ7oXAiOnf/UKogyiw==",
         "dependencies": {}
+      },
+      "url-parse@1.5.10": {
+        "integrity": "sha512-WypcfiRhfeUP9vvF0j6rw0J3hrWrw6iZv3+22h6iRMJ/8z1Tj6XfLP4DsUix5MhMPnXpiHDoKyoZ/bdCkwBCiQ==",
+        "dependencies": {
+          "querystringify": "querystringify@2.2.0",
+          "requires-port": "requires-port@1.0.0"
+        }
       },
       "util@0.10.4": {
         "integrity": "sha512-0Pm9hTQ3se5ll1XihRic3FDIku70C+iHUdT/W926rSgHV5QgXsYbKZN8MSC3tJtSkhuROzvsQjAaFENRXr+19A==",
@@ -964,6 +1015,16 @@
         "integrity": "sha512-+dbF1tHwZpXcbOJdVOkzLDxZP1ailvSxM6ZweXTegylPny803bFhA+vqBYw4s31NSAk4S2Qz+AKXK9a4wkdjcQ==",
         "dependencies": {}
       },
+      "yahoo-finance2@2.13.2": {
+        "integrity": "sha512-eY8Vs2DsLfLpHy62W3WiSn8Rn28B5qB1ruAOyP5/ZrKZP/xXpJiED7EdqYEy+UbxefK4cosAaW973H/hbXs6TA==",
+        "dependencies": {
+          "@sinclair/typebox": "@sinclair/typebox@0.32.35",
+          "@types/tough-cookie": "@types/tough-cookie@4.0.5",
+          "node-fetch": "node-fetch@2.7.0",
+          "tough-cookie": "tough-cookie@4.1.4",
+          "tough-cookie-file-store": "tough-cookie-file-store@2.0.3"
+        }
+      },
       "yallist@4.0.0": {
         "integrity": "sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A==",
         "dependencies": {}
@@ -980,7 +1041,8 @@
         "npm:node-cron@^3.0.3",
         "npm:openai@^4.67.1",
         "npm:path@^0.12.7",
-        "npm:pm2@^5.4.2"
+        "npm:pm2@^5.4.2",
+        "npm:yahoo-finance2@^2.13.2"
       ]
     }
   }

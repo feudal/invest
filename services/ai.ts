@@ -12,6 +12,7 @@ Example of the desired structure:
   {
     "stock": "Clover Health Investments (CLOV)",
     "shortName": "CLOV",
+    "founded: "2014, in San Francisco, United States / or no information"
     "sector": "Healthcare",
     "summary": "Shares are trading higher due to increased trading volume and social media traction.",
     "recommendationBasedOnNews": "Potential for short-term momentum trading based on heightened market attention."
