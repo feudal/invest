@@ -1,7 +1,9 @@
 import cron from "node-cron";
 
-import { fetchNews } from "./services/newsAPI.ts";
-import { sendSMS } from "./services/smsSending.ts";
+import { fetchNews } from "./services/news.ts";
+import { sendSMS } from "./services/alert.ts";
+import { saveFiles } from "./services/files.ts";
+import { analysisNews } from "./services/ai.ts";
 
 // Array de intervale de timp
 const intervals = [
@@ -24,7 +26,7 @@ function scheduleJobs() {
       const cronExpression = `${currentMinute} ${hour} * * 1-5`; // Luni-Vineri (1-5)
 
       // Planificarea job-ului
-      cron.schedule(cronExpression, () => {
+      cron.schedule(cronExpression, async () => {
         console.log(`Rulează la ${hour}:${currentMinute}`);
 
         if (firstTime) {
@@ -32,7 +34,17 @@ function scheduleJobs() {
           firstTime = false;
         }
 
-        fetchNews(interval.step);
+        const data = await fetchNews(interval.step);
+        saveFiles(data?.summaries);
+
+        const analysis = await analysisNews(data?.summaries);
+        saveFiles(analysis || undefined, "analysis");
+
+        const tradingOpportunities = JSON.parse(analysis || "");
+
+        const stocks = tradingOpportunities.map((s) => s.shortName);
+
+        // get info about each stock
       });
 
       // Avansarea minutei curente

@@ -1,15 +1,9 @@
 import axios from "axios";
 import dotenv from "dotenv";
-import fs from "node:fs";
-import path from "node:path";
 import process from "node:process";
-import { fileURLToPath } from "node:url";
 import { formatDate } from "../utils/time.ts";
 
 dotenv.config();
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 export const fetchNews = async (lastMinutes?: number) => {
   let timeQuery = "";
@@ -25,12 +19,12 @@ export const fetchNews = async (lastMinutes?: number) => {
     );
 
     if (response.data) {
-      const targetPath = path.join(
-        __dirname,
-        `../data/news/${new Date().toISOString()}.json`
-      );
-      fs.writeFileSync(targetPath, JSON.stringify(response.data, null, 2));
-      console.log(`Data stored in ${targetPath}`);
+      const feed = response.data.feed; // Assuming the feed contains the news articles
+      const summaries: string = feed
+        .map((news: { summary: string }) => news.summary)
+        .join("\n\n");
+      const newsData = JSON.stringify(response.data, null, 2); // Stringify the news data
+      return { newsData, summaries }; // Return both the news data and summaries
     }
   } catch (error) {
     console.error("Error fetching news:", error.message);
