@@ -1,16 +1,20 @@
 import yahooFinance from "yahoo-finance2";
 
-import { Quote } from "../types.ts";
+import { Quote, TradingOpportunity } from "../types.ts";
 import { logToFile } from "./logs.ts";
-
 const getChartData = async (ticker: string, period: number) => {
-  const data = await yahooFinance.chart(ticker, {
-    period1: new Date(new Date().setDate(new Date().getDate() - period)),
-    period2: new Date(),
-    interval: "1d",
-  });
+  try {
+    const data = await yahooFinance.chart(ticker, {
+      period1: new Date(new Date().setDate(new Date().getDate() - period)),
+      period2: new Date(),
+      interval: "1d",
+    });
 
-  return data;
+    return data;
+  } catch (error) {
+    logToFile(error);
+    throw new Error(`Failed to retrieve chart data for ticker: ${ticker}`);
+  }
 };
 
 /**
@@ -151,3 +155,42 @@ export const getTechnicalIndicators = async (ticker: string) => {
     throw new Error("Failed to retrieve technical indicators");
   }
 };
+
+export async function addTechnicalIndicators(
+  stocks: string[],
+  tradingOpportunities: TradingOpportunity[]
+): Promise<(TradingOpportunity | null)[]> {
+  if (stocks.length === 0) {
+    return [];
+  }
+
+  return Promise.all(
+    stocks.map(async (stock) => {
+      const {
+        shortMovingAverage,
+        mediumMovingAverage,
+        longMovingAverage,
+        macd,
+        rsi,
+      } = await getTechnicalIndicators(stock);
+
+      const opportunity = tradingOpportunities.find(
+        (opportunity) => opportunity.shortName === stock
+      );
+
+      if (opportunity) {
+        opportunity.technicalIndicators = {
+          shortMovingAverage,
+          mediumMovingAverage,
+          longMovingAverage,
+          macd,
+          rsi,
+        };
+
+        return opportunity;
+      }
+
+      return null;
+    })
+  );
+}

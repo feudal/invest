@@ -24,25 +24,29 @@ Example of the desired structure:
   THE NEWS MUST AFECT ONLY USA STOCKS
   `;
 
-export const analysisNews = async (news?: string) => {
-  if (!news) {
+const secondContext = `As a trader and programmer, I'm evaluating potential stock investments for strategic gains. 
+Based on the provided stock information, which includes recent news updates and technical indicators, I aim to assess the suitability of investing in these stocks for both short-term and medium-term gains. 
+Could you provide an analysis or recommendation on whether to buy or invest in these stocks, considering factors like recent news, moving averages, MACD, and RSI?`;
+
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+  project: process.env.PROJECT_ID,
+});
+
+export const analyzeInfo = async (info: string, analyze: "first" | "final") => {
+  if (!info) {
     logToFile("Don't received any news.");
     return;
   }
 
-  const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY,
-    project: process.env.PROJECT_ID,
-  });
-
   try {
-    // Log the incoming news
-    logToFile(`News received: ${news}`);
-
     const completion = await openai.chat.completions.create({
       messages: [
-        { role: "assistant", content: myContext },
-        { role: "user", content: news },
+        {
+          role: "assistant",
+          content: analyze === "first" ? myContext : secondContext,
+        },
+        { role: "user", content: info },
       ],
       model: "gpt-4o",
     });

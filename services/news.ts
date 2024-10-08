@@ -17,19 +17,14 @@ export const fetchNews = async (lastMinutes?: number) => {
   }
 
   try {
-    logToFile("Receiving news");
-    const response: News = await axios.get(
-      `https://www.alphavantage.co/query?function=NEWS_SENTIMENT${timeQuery}&limit=1000&apikey=${process.env.NEWS_API}`
-    );
+    const url = `https://www.alphavantage.co/query?function=NEWS_SENTIMENT${timeQuery}&limit=1000&apikey=${process.env.NEWS_API}`;
+    logToFile("Receiving news from: " + url);
+    const response: News = await axios.get(url);
 
-    if (response) {
-      const feeds = response.feed;
-      const summaries = feeds?.map((news) => news.summary).join("\n\n");
-      const newsData = response.feed;
+    if (response.feed.length > 0) {
+      logToFile(`Received ${response.feed.length} news data`);
 
-      logToFile(`Received ${newsData.length} news.`);
-
-      return { newsData, summaries };
+      return response;
     } else {
       logToFile("No news data received");
     }
