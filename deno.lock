@@ -2,6 +2,7 @@
   "version": "3",
   "packages": {
     "specifiers": {
+      "npm:@types/node-cron@^3.0.11": "npm:@types/node-cron@3.0.11",
       "npm:@types/node@^22.5.5": "npm:@types/node@22.7.4",
       "npm:axios@^1.7.7": "npm:axios@1.7.7",
       "npm:dotenv@^16.4.5": "npm:dotenv@16.4.5",
@@ -66,6 +67,10 @@
       },
       "@tootallnate/quickjs-emscripten@0.23.0": {
         "integrity": "sha512-C5Mc6rdnsaJDjO3UpGW/CQTHtCKaYlScZTly4JIu97Jxo/odCiH0ITnDXSJPTOrEKk/ycSZ0AOgTmkDtkOsvIA==",
+        "dependencies": {}
+      },
+      "@types/node-cron@3.0.11": {
+        "integrity": "sha512-0ikrnug3/IyneSHqCBeslAhlK2aBfYek1fGo4bP4QnZPmiqSGRK+Oy7ZMisLWkesffJvQ1cqAcBnJC+8+nxIAg==",
         "dependencies": {}
       },
       "@types/node-fetch@2.6.11": {
@@ -1110,6 +1115,7 @@
   "workspace": {
     "packageJson": {
       "dependencies": [
+        "npm:@types/node-cron@^3.0.11",
         "npm:@types/node@^22.5.5",
         "npm:axios@^1.7.7",
         "npm:dotenv@^16.4.5",
