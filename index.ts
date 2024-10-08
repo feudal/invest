@@ -36,7 +36,12 @@ function scheduleJobs() {
         const data = await fetchNews(interval.step);
         saveFiles(data?.summaries);
 
-        const analysis = await analysisNews(data?.summaries);
+        const relevantNews = data?.newsData
+          .filter((f) => parseFloat(f.overall_sentiment_score.toString()) > 0.4)
+          .map((f) => f.summary)
+          .join("\n\n");
+
+        const analysis = await analysisNews(relevantNews);
         saveFiles(analysis || undefined, "analysis");
 
         const tradingOpportunities: TradingOpportunity[] = JSON.parse(

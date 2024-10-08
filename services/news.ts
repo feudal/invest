@@ -2,9 +2,9 @@ import axios from "axios";
 import dotenv from "dotenv";
 import process from "node:process";
 
+import { News } from "../types.ts";
 import { formatDate } from "../utils/time.ts";
 import { logToFile } from "./logs.ts";
-import { News } from "../types.ts";
 
 dotenv.config();
 
@@ -24,8 +24,11 @@ export const fetchNews = async (lastMinutes?: number) => {
 
     if (response) {
       const feeds = response.feed;
-      const summaries = feeds.map((news) => news.summary).join("\n\n");
-      const newsData = JSON.stringify(response.feed, null, 2);
+      const summaries = feeds?.map((news) => news.summary).join("\n\n");
+      const newsData = response.feed;
+
+      logToFile(`Received ${newsData.length} news.`);
+
       return { newsData, summaries };
     } else {
       logToFile("No news data received");
