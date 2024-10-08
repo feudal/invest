@@ -3,6 +3,7 @@
   "type": "module",
   "scripts": {
     "111": "deno run --allow-all 111.ts",
+    "start:all": "pm2 start index.ts --interpreter='deno' --interpreter-args='run --allow-all' --restart-delay=1000 --watch && pm2 start server.ts --interpreter='deno' --interpreter-args='run --allow-all' --restart-delay=1000 --watch",
     "start": "pm2 start index.ts --interpreter='deno' --interpreter-args='run --allow-all' --restart-delay=1000 --watch",
     "server": "pm2 start server.ts --interpreter='deno' --interpreter-args='run --allow-all' --restart-delay=1000 --watch",
     "restart": "git pull && pm2 restart index.ts",
