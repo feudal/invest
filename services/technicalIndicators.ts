@@ -2,6 +2,7 @@ import yahooFinance from "yahoo-finance2";
 
 import { Quote, TradingOpportunity } from "../types.ts";
 import { logToFile } from "./logs.ts";
+
 const getChartData = async (ticker: string, period: number) => {
   try {
     const data = await yahooFinance.chart(ticker, {
@@ -115,6 +116,23 @@ const getRSI = (quotes: Quote[]): number | undefined => {
   }
 };
 
+const getAverageVolume = (quotes: Quote[], period: number): number => {
+  const data = quotes.slice(-period);
+
+  const volumes = data
+    .map((item: Quote) => item.volume)
+    .filter((volume): volume is number => volume !== null);
+
+  if (volumes.length === 0) {
+    throw new Error("No volume data available to calculate average volume");
+  }
+
+  const averageVolume =
+    volumes.reduce((a: number, b: number) => a + b, 0) / volumes.length;
+
+  return averageVolume;
+};
+
 /**
  * Retrieves technical indicators for a given stock ticker.
  *
@@ -141,6 +159,7 @@ export const getTechnicalIndicators = async (ticker: string) => {
     const longMovingAverage = getMovingAverage(quotes, 200);
     const macd = getMACD(quotes);
     const rsi = getRSI(quotes);
+    const averageVolume = getAverageVolume(quotes, 10);
 
     return {
       ticker,
@@ -149,6 +168,7 @@ export const getTechnicalIndicators = async (ticker: string) => {
       longMovingAverage,
       macd,
       rsi,
+      averageVolume,
     };
   } catch (error) {
     logToFile(error);
@@ -172,6 +192,7 @@ export async function addTechnicalIndicators(
         longMovingAverage,
         macd,
         rsi,
+        averageVolume,
       } = await getTechnicalIndicators(stock);
 
       const opportunity = tradingOpportunities.find(
@@ -185,6 +206,7 @@ export async function addTechnicalIndicators(
           longMovingAverage,
           macd,
           rsi,
+          averageVolume,
         };
 
         return opportunity;

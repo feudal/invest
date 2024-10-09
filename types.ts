@@ -56,5 +56,6 @@ export interface TradingOpportunity {
     longMovingAverage: number;
     macd?: number;
     rsi?: number;
+    averageVolume?: number;
   };
 }
