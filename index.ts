@@ -12,7 +12,8 @@ import { checkTicker } from "./utils/tickers.ts";
 
 // Every 10 minutes
 const TEN_MINUTES = 10;
-const CRON_EXPRESSION = `*/${TEN_MINUTES} * * * *`;
+// from monday to friday from 9am-11am and 1:30pm-4pm
+const CRON_EXPRESSION = `*/${TEN_MINUTES} 9-10,13-14 * * 1-5`;
 
 const processNews = async (period: number) => {
   const TODAY_DATE = new Date().toISOString().split("T")[0];
