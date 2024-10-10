@@ -19,12 +19,13 @@ export const fetchNews = async (lastMinutes?: number) => {
   try {
     const url = `https://www.alphavantage.co/query?function=NEWS_SENTIMENT${timeQuery}&limit=1000&apikey=${process.env.NEWS_API}`;
     logToFile("Receiving news from: " + url);
-    const response: News = await axios.get(url);
+    const response = await axios.get(url);
+    const newsData: News = response.data;
 
-    if (response.feed.length > 0) {
-      logToFile(`Received ${response.feed.length} news data`);
+    if (newsData.feed.length > 0) {
+      logToFile(`Received ${newsData?.feed?.length ?? 0} news data`);
 
-      return response;
+      return newsData;
     } else {
       logToFile("No news data received");
     }
