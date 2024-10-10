@@ -21,9 +21,16 @@ const processNews = async (period: number) => {
 
   const data = await fetchNews(period);
 
+  saveFiles(
+    JSON.stringify(data),
+    `news/${TODAY_DATE}`,
+    "json",
+    CURRENT_ISO_TIME
+  );
+
   const relevantNewsSummaries =
     data?.feed
-      .filter((item) => item.overall_sentiment_score > 0.3)
+      // .filter((item) => item.overall_sentiment_score > 0.3)
       .map((item) => item.summary)
       .join("\n\n") || "";
 
@@ -31,6 +38,13 @@ const processNews = async (period: number) => {
 
   const tradingOpportunities: TradingOpportunity[] = JSON.parse(
     analysisResult || ""
+  );
+
+  saveFiles(
+    JSON.stringify(tradingOpportunities),
+    `opportunities/${TODAY_DATE}`,
+    "json",
+    CURRENT_ISO_TIME
   );
 
   const validStocks = tradingOpportunities
