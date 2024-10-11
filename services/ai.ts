@@ -21,7 +21,6 @@ Example of the desired structure:
   ]
   IN RESPONSE PUT ONLY THE OBJECT!
   PLEASE PROVIDE THE RESPONSE WITHOUT USING ANY CODE FORMATTING!
-  THE NEWS MUST AFECT ONLY USA STOCKS
   `;
 
 const secondContext = `As a trader and programmer, I'm evaluating potential stock investments for strategic gains. 

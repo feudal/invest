@@ -8,7 +8,6 @@ import {
   saveFiles,
 } from "./services/index.ts";
 import { TradingOpportunity } from "./types.ts";
-import { checkTicker } from "./utils/tickers.ts";
 
 // Every 10 minutes
 const TEN_MINUTES = 10;
@@ -47,13 +46,13 @@ const processNews = async (period: number) => {
     CURRENT_ISO_TIME
   );
 
-  const validStocks = tradingOpportunities
-    .map((opportunity) => opportunity.shortName)
-    .filter((shortName) => checkTicker(shortName));
-  logToFile("Stocks: " + validStocks);
+  const stocks = tradingOpportunities.map(
+    (opportunity) => opportunity.shortName
+  );
+  logToFile("Stocks: " + stocks);
 
   const opportunitiesWithIndicators = await addTechnicalIndicators(
-    validStocks,
+    stocks,
     tradingOpportunities
   );
 
