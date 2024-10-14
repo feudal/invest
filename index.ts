@@ -19,6 +19,12 @@ const processNews = async (period: number) => {
   const CURRENT_ISO_TIME = new Date().toISOString().split("T")[1].split(".")[0];
 
   const news = await fetchNews(period);
+  logToFile("Fetched news: " + JSON.stringify(news));
+
+  if (!news || news.length === 0) {
+    logToFile("No news found");
+    return;
+  }
 
   saveFiles(
     JSON.stringify(news),
