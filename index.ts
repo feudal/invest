@@ -18,20 +18,17 @@ const processNews = async (period: number) => {
   const TODAY_DATE = new Date().toISOString().split("T")[0];
   const CURRENT_ISO_TIME = new Date().toISOString().split("T")[1].split(".")[0];
 
-  const data = await fetchNews(period);
+  const news = await fetchNews(period);
 
   saveFiles(
-    JSON.stringify(data),
+    JSON.stringify(news),
     `news/${TODAY_DATE}`,
     "json",
     CURRENT_ISO_TIME
   );
 
   const relevantNewsSummaries =
-    data?.feed
-      // .filter((item) => item.overall_sentiment_score > 0.3)
-      .map((item) => item.summary)
-      .join("\n\n") || "";
+    news?.map((item) => item.summary).join("\n\n") || "";
 
   const analysisResult = await analyzeInfo(relevantNewsSummaries, "first");
 
