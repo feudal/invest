@@ -11,8 +11,8 @@ import { TradingOpportunity } from "./types.ts";
 
 // Every 10 minutes
 const TEN_MINUTES = 10;
-// from monday to friday from 9am-11am and 1:30pm-4pm
-const CRON_EXPRESSION = `*/${TEN_MINUTES} 9-10,13-14 * * 1-5`;
+// from monday to friday from 8am-10am and 1:30pm-4pm
+const CRON_EXPRESSION = `*/${TEN_MINUTES} 8-10,13-15 * * 1-5`;
 
 const processNews = async (period: number) => {
   const TODAY_DATE = new Date().toISOString().split("T")[0];
