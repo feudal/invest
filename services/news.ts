@@ -29,7 +29,7 @@ export const fetchNews = async (lastMinutes?: number) => {
     if (newsData.length > 0) {
       logToFile(`Received ${newsData?.length} news items`);
 
-      return newsData;
+      return newsData.map((item) => item.summary).join("\n\n");
     } else {
       logToFile("No news data received");
     }
