@@ -32,10 +32,7 @@ const processNews = async (period: number) => {
     CURRENT_ISO_TIME
   );
 
-  const relevantNewsSummaries =
-    news?.map((item) => item.summary).join("\n\n") || "";
-
-  const analysisResult = await analyzeInfo(relevantNewsSummaries, "first");
+  const analysisResult = await analyzeInfo(news, "first");
 
   const tradingOpportunities: TradingOpportunity[] = JSON.parse(
     analysisResult || ""
