@@ -9,10 +9,9 @@ import {
 } from "./services/index.ts";
 import { TradingOpportunity } from "./types.ts";
 
-// Every 10 minutes
-const TEN_MINUTES = 10;
-// from monday to friday from 8am-10am and 1:30pm-4pm
-const CRON_EXPRESSION = `*/${TEN_MINUTES} 8-10,13-15 * * 1-5`;
+const ONE_HOUR = 60;
+// from monday to friday from 8 to 20
+const CRON_EXPRESSION = `*/30 8-20 * * 1-5`;
 
 const processNews = async (period: number) => {
   const TODAY_DATE = new Date().toISOString().split("T")[0];
@@ -81,7 +80,7 @@ const processNews = async (period: number) => {
 
 function scheduleJobs() {
   cron.schedule(CRON_EXPRESSION, async () => {
-    await processNews(TEN_MINUTES);
+    await processNews(ONE_HOUR);
   });
 }
 

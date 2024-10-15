@@ -19,8 +19,10 @@ export const fetchNews = async (lastMinutes?: number) => {
   try {
     const url = `https://www.alphavantage.co/query?function=NEWS_SENTIMENT${timeQuery}&limit=1000&apikey=${process.env.NEWS_API}`;
     logToFile("Receiving news from: " + url);
-    const response: News = await axios.get(url);
-    const newsData = response.feed.filter(
+    const response = await axios.get(url);
+    const news: News = response.data;
+
+    const newsData = news.feed.filter(
       (item) => item.overall_sentiment_score > 0.3
     );
 
