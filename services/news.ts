@@ -17,8 +17,7 @@ export const fetchNews = async (lastMinutes?: number) => {
   }
 
   try {
-    // const url = `https://www.alphavantage.co/query?function=NEWS_SENTIMENT${timeQuery}&limit=1000&apikey=${process.env.NEWS_API}`;
-    const url = `https://www.alphavantage.co/query?function=NEWS_SENTIMENT&tickers=AAPL&apikey=demo`;
+    const url = `https://www.alphavantage.co/query?function=NEWS_SENTIMENT${timeQuery}&limit=1000&apikey=${process.env.NEWS_API}`;
     logToFile("Receiving news from: " + url);
     const response = await axios.get(url);
     const news: News = response.data;
