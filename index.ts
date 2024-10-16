@@ -11,14 +11,13 @@ import { TradingOpportunity } from "./types.ts";
 
 const ONE_HOUR = 60;
 // from monday to friday from 8 to 20
-const CRON_EXPRESSION = `*/1 8-20 * * 1-5`;
+const CRON_EXPRESSION = `*/30 8-20 * * 1-5`;
 
 const processNews = async (period: number) => {
   const TODAY_DATE = new Date().toISOString().split("T")[0];
   const CURRENT_ISO_TIME = new Date().toISOString().split("T")[1].split(".")[0];
 
   const news = await fetchNews(period);
-  logToFile("Fetched news: " + JSON.stringify(news));
 
   if (!news || news.length === 0) {
     logToFile("No news found");
@@ -33,6 +32,8 @@ const processNews = async (period: number) => {
   );
 
   const analysisResult = await analyzeInfo(news, "first");
+
+  logToFile("Analysis result: " + analysisResult);
 
   const tradingOpportunities: TradingOpportunity[] = JSON.parse(
     analysisResult || ""
