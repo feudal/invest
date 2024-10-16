@@ -6,8 +6,8 @@
     "start": "pm2 start index.ts --interpreter='deno' --interpreter-args='run --allow-all' --restart-delay=1000 --watch",
     "server": "pm2 start server.ts --interpreter='deno' --interpreter-args='run --allow-all' --restart-delay=1000 --watch",
     "restart": "pm2 restart all",
-    "enter": "ssh root@188.245.173.126",
-    "copy": " scp -r root@188.245.173.126:/root/invest/data /Users/dimon/Documents/WINDOWS/projects/invest/server"
+    "enter": "ssh root@195.201.1.141",
+    "copy": " scp -r root@195.201.1.141:/root/invest/data /Users/dimon/Documents/WINDOWS/projects/invest/server"
   },
   "include": [
     "src/**/*.ts"
