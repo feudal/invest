@@ -2,9 +2,9 @@
   "license": "UNLICENSED",
   "type": "module",
   "scripts": {
-    "start:all": "pm2 start index.ts --interpreter='deno' --interpreter-args='run --allow-all' --restart-delay=1000 --watch && pm2 start server.ts --interpreter='deno' --interpreter-args='run --allow-all' --restart-delay=1000 --watch",
-    "start": "pm2 start index.ts --interpreter='deno' --interpreter-args='run --allow-all' --restart-delay=1000 --watch",
-    "server": "pm2 start server.ts --interpreter='deno' --interpreter-args='run --allow-all' --restart-delay=1000 --watch",
+    "start:all": "pm2 start index.ts --interpreter='deno' --interpreter-args='run --allow-all' --restart-delay=1000 && pm2 start server.ts --interpreter='deno' --interpreter-args='run --allow-all' --restart-delay=1000",
+    "start": "pm2 start index.ts --interpreter='deno' --interpreter-args='run --allow-all' --restart-delay=1000",
+    "server": "pm2 start server.ts --interpreter='deno' --interpreter-args='run --allow-all' --restart-delay=1000",
     "restart": "pm2 restart all",
     "enter": "ssh root@195.201.1.141",
     "copy": " scp -r root@195.201.1.141:/root/invest/data /Users/dimon/Documents/WINDOWS/projects/invest/server"
