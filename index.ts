@@ -24,12 +24,7 @@ const processNews = async (period: number) => {
     return;
   }
 
-  saveFiles(
-    JSON.stringify(news),
-    `news/${TODAY_DATE}`,
-    "json",
-    CURRENT_ISO_TIME
-  );
+  saveFiles(news, `news/${TODAY_DATE}`, "txt", CURRENT_ISO_TIME);
 
   const analysisResult = await analyzeInfo(news, "first");
 
