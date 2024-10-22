@@ -64,14 +64,16 @@ const processNews = async (period: number) => {
     "final"
   );
 
-  finalAnalysisResult && sendSMS(stocks.join(", "));
+  if (finalAnalysisResult) {
+    saveFiles(
+      finalAnalysisResult || "",
+      `opportunities/${TODAY_DATE}`,
+      "txt",
+      CURRENT_ISO_TIME
+    );
 
-  saveFiles(
-    finalAnalysisResult || "",
-    `opportunities/${TODAY_DATE}`,
-    "txt",
-    CURRENT_ISO_TIME
-  );
+    await sendSMS(finalAnalysisResult);
+  }
 };
 
 function scheduleJobs() {
