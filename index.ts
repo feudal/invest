@@ -6,6 +6,7 @@ import {
   fetchNews,
   logToFile,
   saveFiles,
+  sendSMS,
 } from "./services/index.ts";
 import { TradingOpportunity } from "./types.ts";
 
@@ -62,6 +63,8 @@ const processNews = async (period: number) => {
     JSON.stringify(opportunitiesWithIndicators),
     "final"
   );
+
+  finalAnalysisResult && sendSMS(stocks.join(", "));
 
   saveFiles(
     finalAnalysisResult || "",
