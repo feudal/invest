@@ -186,33 +186,38 @@ export async function addTechnicalIndicators(
 
   return Promise.all(
     stocks.map(async (stock) => {
-      const {
-        shortMovingAverage,
-        mediumMovingAverage,
-        longMovingAverage,
-        macd,
-        rsi,
-        averageVolume,
-      } = await getTechnicalIndicators(stock);
-
-      const opportunity = tradingOpportunities.find(
-        (opportunity) => opportunity.shortName === stock
-      );
-
-      if (opportunity) {
-        opportunity.technicalIndicators = {
+      try {
+        const {
           shortMovingAverage,
           mediumMovingAverage,
           longMovingAverage,
           macd,
           rsi,
           averageVolume,
-        };
+        } = await getTechnicalIndicators(stock);
 
-        return opportunity;
+        const opportunity = tradingOpportunities.find(
+          (opportunity) => opportunity.shortName === stock
+        );
+
+        if (opportunity) {
+          opportunity.technicalIndicators = {
+            shortMovingAverage,
+            mediumMovingAverage,
+            longMovingAverage,
+            macd,
+            rsi,
+            averageVolume,
+          };
+
+          return opportunity;
+        }
+
+        return null;
+      } catch (error) {
+        logToFile(error);
+        return null;
       }
-
-      return null;
     })
   );
 }

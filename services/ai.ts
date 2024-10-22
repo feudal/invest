@@ -52,7 +52,7 @@ export const analyzeInfo = async (info: string, analyze: "first" | "final") => {
 
     const response = completion.choices[0].message.content;
 
-    logToFile(response ? "Response generated." : "No response generated.");
+    logToFile(response ? "AI response generated." : "No response generated.");
 
     return response;
   } catch (error) {

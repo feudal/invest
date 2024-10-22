@@ -29,8 +29,6 @@ const processNews = async (period: number) => {
 
   const analysisResult = await analyzeInfo(news, "first");
 
-  logToFile("Analysis result: " + analysisResult);
-
   const tradingOpportunities: TradingOpportunity[] = JSON.parse(
     analysisResult || ""
   );
