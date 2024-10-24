@@ -70,11 +70,11 @@ const processNews = async (period: number) => {
       CURRENT_ISO_TIME
     );
 
-    const sms = await analyzeInfo(finalAnalysisResult, "sms");
+    // const sms = await analyzeInfo(finalAnalysisResult, "sms");
 
-    if (sms || sms === "NULL") {
-      await sendSMS(sms);
-    }
+    // if (sms || sms === "NULL") {
+    //   await sendSMS(sms);
+    // }
   }
 };
 
