@@ -70,7 +70,11 @@ const processNews = async (period: number) => {
       CURRENT_ISO_TIME
     );
 
-    await sendSMS(stocks.join(", "));
+    const sms = await analyzeInfo(finalAnalysisResult, "sms");
+
+    if (sms || sms === "NULL") {
+      await sendSMS(sms);
+    }
   }
 };
 

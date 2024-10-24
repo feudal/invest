@@ -27,12 +27,24 @@ const secondContext = `As a trader and programmer, I'm evaluating potential stoc
 Based on the provided stock information, which includes recent news updates and technical indicators, I aim to assess the suitability of investing in these stocks for both short-term and medium-term gains. 
 Could you provide an analysis or recommendation on whether to buy or invest in these stocks, considering factors like recent news, moving averages, MACD, and RSI?`;
 
+const smsContext = `Look at the following analysis and create a SMS (160 characters) that summarizes the information in a clear and concise manner.
+if there is nothing important to say, just say "NULL"`;
+
+const content = {
+  first: myContext,
+  final: secondContext,
+  sms: smsContext,
+};
+
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
   project: process.env.PROJECT_ID,
 });
 
-export const analyzeInfo = async (info: string, analyze: "first" | "final") => {
+export const analyzeInfo = async (
+  info: string,
+  analyze: "first" | "final" | "sms"
+) => {
   if (!info) {
     logToFile("Don't received any news.");
     return;
@@ -43,7 +55,7 @@ export const analyzeInfo = async (info: string, analyze: "first" | "final") => {
       messages: [
         {
           role: "assistant",
-          content: analyze === "first" ? myContext : secondContext,
+          content: content[analyze],
         },
         { role: "user", content: info },
       ],
