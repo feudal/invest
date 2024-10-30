@@ -58,4 +58,11 @@ export interface TradingOpportunity {
     rsi?: number;
     averageVolume?: number;
   };
+  fundamentalIndicators?: {
+    peRatio: number;
+    eps: number;
+    revenueGrowth: number;
+    debtToEquity: number;
+    roe: number;
+  };
 }

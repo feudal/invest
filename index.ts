@@ -1,12 +1,11 @@
 import cron from "node-cron";
 
 import {
-  addTechnicalIndicators,
+  addTechnicalAndFundamentalIndicators,
   analyzeInfo,
   fetchNews,
   logToFile,
   saveFiles,
-  sendSMS,
 } from "./services/index.ts";
 import { TradingOpportunity } from "./types.ts";
 
@@ -45,10 +44,8 @@ const processNews = async (period: number) => {
   );
   logToFile("Stocks: " + stocks);
 
-  const opportunitiesWithIndicators = await addTechnicalIndicators(
-    stocks,
-    tradingOpportunities
-  );
+  const opportunitiesWithIndicators =
+    await addTechnicalAndFundamentalIndicators(stocks, tradingOpportunities);
 
   saveFiles(
     JSON.stringify(opportunitiesWithIndicators),

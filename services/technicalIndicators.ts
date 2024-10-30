@@ -176,7 +176,36 @@ export const getTechnicalIndicators = async (ticker: string) => {
   }
 };
 
-export async function addTechnicalIndicators(
+const getFundamentalData = async (ticker: string) => {
+  try {
+    const quoteSummary = await yahooFinance.quoteSummary(ticker, {
+      modules: ["summaryDetail", "financialData", "defaultKeyStatistics"],
+    });
+
+    const { summaryDetail, financialData, defaultKeyStatistics } = quoteSummary;
+
+    const peRatio = summaryDetail?.trailingPE || 0;
+    const eps = defaultKeyStatistics?.trailingEps || 0;
+    const revenueGrowth = financialData?.revenueGrowth || 0;
+    const debtToEquity = financialData?.debtToEquity || 0;
+    const roe = financialData?.returnOnEquity || 0;
+
+    return {
+      peRatio,
+      eps,
+      revenueGrowth,
+      debtToEquity,
+      roe,
+    };
+  } catch (error) {
+    logToFile(error);
+    throw new Error(
+      `Failed to retrieve fundamental data for ticker: ${ticker}`
+    );
+  }
+};
+
+export async function addTechnicalAndFundamentalIndicators(
   stocks: string[],
   tradingOpportunities: TradingOpportunity[]
 ): Promise<(TradingOpportunity | null)[]> {
@@ -186,38 +215,44 @@ export async function addTechnicalIndicators(
 
   return Promise.all(
     stocks.map(async (stock) => {
-      try {
-        const {
+      const {
+        shortMovingAverage,
+        mediumMovingAverage,
+        longMovingAverage,
+        macd,
+        rsi,
+        averageVolume,
+      } = await getTechnicalIndicators(stock);
+
+      const { peRatio, eps, revenueGrowth, debtToEquity, roe } =
+        await getFundamentalData(stock);
+
+      const opportunity = tradingOpportunities.find(
+        (opportunity) => opportunity.shortName === stock
+      );
+
+      if (opportunity) {
+        opportunity.technicalIndicators = {
           shortMovingAverage,
           mediumMovingAverage,
           longMovingAverage,
           macd,
           rsi,
           averageVolume,
-        } = await getTechnicalIndicators(stock);
+        };
 
-        const opportunity = tradingOpportunities.find(
-          (opportunity) => opportunity.shortName === stock
-        );
+        opportunity.fundamentalIndicators = {
+          peRatio,
+          eps,
+          revenueGrowth,
+          debtToEquity,
+          roe,
+        };
 
-        if (opportunity) {
-          opportunity.technicalIndicators = {
-            shortMovingAverage,
-            mediumMovingAverage,
-            longMovingAverage,
-            macd,
-            rsi,
-            averageVolume,
-          };
-
-          return opportunity;
-        }
-
-        return null;
-      } catch (error) {
-        logToFile(error);
-        return null;
+        return opportunity;
       }
+
+      return null;
     })
   );
 }
