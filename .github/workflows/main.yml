@@ -20,7 +20,7 @@ jobs:
 
       - name: Deploy via SSH
         run: |
-          ssh -o StrictHostKeyChecking=no root@195.201.1.141 << EOF
+          ssh root@195.201.1.141 << EOF
             cd /invest
             git pull
             pm2 restart all
